@@ -1,35 +1,37 @@
 import { Controller } from '@nestjs/common';
-import { MessagePattern, Payload } from '@nestjs/microservices';
 import { UsersService } from './users.service';
-import { CreateUserDto } from './dto/create-user.dto';
-import { UpdateUserDto } from './dto/update-user.dto';
+import { 
+  UsersServiceController,
+  CreateUserDto,
+  UpdateUserDto,
+  UsersServiceControllerMethods,
+  FindOneUserDto,
+  PaginationDto,
+  User,
+  Users,
+} from '@app/common';
+import { Observable } from 'rxjs';
 
 @Controller()
-export class UsersController {
+@UsersServiceControllerMethods()
+export class UsersController implements UsersServiceController{
   constructor(private readonly usersService: UsersService) {}
-
-  @MessagePattern('createUser')
-  create(@Payload() createUserDto: CreateUserDto) {
-    return this.usersService.create(createUserDto);
+  createUser(createUserDto: CreateUserDto): Promise<User> | Observable<User> | User {
+    throw new Error('Method not implemented.');
   }
-
-  @MessagePattern('findAllUsers')
-  findAll() {
-    return this.usersService.findAll();
+  findAllUsers(): Promise<Users> | Observable<Users> | Users {
+    throw new Error('Method not implemented.');
   }
-
-  @MessagePattern('findOneUser')
-  findOne(@Payload() id: number) {
-    return this.usersService.findOne(id);
+  findOneUser(findOneUserDto: FindOneUserDto): Promise<User> | Observable<User> | User {
+    throw new Error('Method not implemented.');
   }
-
-  @MessagePattern('updateUser')
-  update(@Payload() updateUserDto: UpdateUserDto) {
-    return this.usersService.update(updateUserDto.id, updateUserDto);
+  updateUser(updateUserDto: UpdateUserDto): Promise<User> | Observable<User> | User {
+    throw new Error('Method not implemented.');
   }
-
-  @MessagePattern('removeUser')
-  remove(@Payload() id: number) {
-    return this.usersService.remove(id);
+  removeUser(findOneUserDto: FindOneUserDto): Promise<User> | Observable<User> | User {
+    throw new Error('Method not implemented.');
+  }
+  queryUsers(paginationDtoStream: Observable<PaginationDto>): Observable<Users> {
+    throw new Error('Method not implemented.');
   }
 }
