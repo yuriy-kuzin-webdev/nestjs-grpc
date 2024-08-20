@@ -13,22 +13,22 @@ export class UsersService implements OnModuleInit {
     this.usersService = this.client.getService<UsersServiceClient>(USERS_SERVICE_NAME);
   }
   create(createUserDto: CreateUserDto) {
-    return 'This action adds a new user';
+    return this.usersService.createUser(createUserDto);
   }
 
   findAll() {
-    return `This action returns all users`;
+    return this.usersService.findAllUsers({});
   }
 
-  findOne(id: number) {
-    return `This action returns a #${id} user`;
+  findOne(id: string) {
+    return this.usersService.findOneUser({ id });
   }
 
-  update(id: number, updateUserDto: UpdateUserDto) {
-    return `This action updates a #${id} user`;
+  update(id: string, updateUserDto: UpdateUserDto) {
+    return this.usersService.updateUser({ id, ...updateUserDto });
   }
 
-  remove(id: number) {
-    return `This action removes a #${id} user`;
+  remove(id: string) {
+    return this.usersService.removeUser({ id });
   }
 }
